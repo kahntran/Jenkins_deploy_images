@@ -47,7 +47,7 @@ Working directory: ${params.SOURCE_DIRECTORY}
                             sh "sed -i -e \"s/:master/:${BRANCH}/g\" ${params.SOURCE_DIRECTORY}/laradock/${COMPOSE_YML}"
 
                             echo "--> Deploying"
-                            sh "echo "$(docker-compose -f stack.yml config 2>/dev/null)" | docker stack deploy -c ${params.SOURCE_DIRECTORY}/laradock/${COMPOSE_YML} --prune ${NAME}-${BRANCH}"
+                            sh "echo \"\$(docker-compose -f docker-compose.yml config 2>/dev/null)\" | docker stack deploy -c ${params.SOURCE_DIRECTORY}/laradock/${COMPOSE_YML} --prune ${NAME}-${BRANCH}"
                         } else {
                             echo "--> Did not find ${COMPOSE_YML};"
                             error("--> Looks like this project is not configured for running as ${ENVIRONMENT}")

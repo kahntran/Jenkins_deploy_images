@@ -47,6 +47,7 @@ Working directory: ${params.SOURCE_DIRECTORY}
                             sh "sed -i -e \"s/:master/:${BRANCH}/g\" ${params.SOURCE_DIRECTORY}/laradock/${COMPOSE_YML}"
 
                             echo "--> Deploying"
+                            sh "docker-compose config -f ${params.SOURCE_DIRECTORY}/laradock/docker-compose.yml > ${params.SOURCE_DIRECTORY}/laradock/${COMPOSE_YML}"
                             sh "docker stack deploy -c ${params.SOURCE_DIRECTORY}/laradock/${COMPOSE_YML} --prune ${NAME}-${BRANCH}"
                         } else {
                             echo "--> Did not find ${COMPOSE_YML};"

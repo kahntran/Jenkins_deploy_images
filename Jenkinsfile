@@ -47,7 +47,7 @@ Working directory: ${params.SOURCE_DIRECTORY}
                             sh "sed -i -e \"s/:master/:${BRANCH}/g\" ${params.SOURCE_DIRECTORY}/${COMPOSE_YML}"
 
                             echo "--> Deploying"
-                            docker stack deploy -c ${params.SOURCE_DIRECTORY}/${COMPOSE_YML} --prune ${NAME}-${BRANCH} 
+                            sh "docker stack deploy -c ${params.SOURCE_DIRECTORY}/${COMPOSE_YML} --prune ${NAME}-${BRANCH}"
                         } else {
                             echo "--> Did not find ${COMPOSE_YML};"
                             error("--> Looks like this project is not configured for running as ${ENVIRONMENT}")

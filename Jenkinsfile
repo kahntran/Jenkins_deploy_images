@@ -39,7 +39,7 @@ Working directory: ${params.SOURCE_DIRECTORY}
                     
                     if ("${BRANCH}" =~ /^(master|develop|feature*)/) {
                     
-                        if (fileExists("${params.SOURCE_DIRECTORY}/${COMPOSE_YML}")) {
+                        if (fileExists("${params.SOURCE_DIRECTORY}/laradock/${COMPOSE_YML}")) {
                             echo "--> Found ${COMPOSE_YML};"
 
                             echo "--> Customizing domain names for branch ${BRANCH}"                                                    
@@ -47,7 +47,7 @@ Working directory: ${params.SOURCE_DIRECTORY}
                             sh "sed -i -e \"s/:master/:${BRANCH}/g\" ${params.SOURCE_DIRECTORY}/${COMPOSE_YML}"
 
                             echo "--> Deploying"
-                            sh "docker stack deploy -c ${params.SOURCE_DIRECTORY}/${COMPOSE_YML} --prune ${NAME}-${BRANCH}"
+                            sh "docker stack deploy -c ${params.SOURCE_DIRECTORY}/laradock/${COMPOSE_YML} --prune ${NAME}-${BRANCH}"
                         } else {
                             echo "--> Did not find ${COMPOSE_YML};"
                             error("--> Looks like this project is not configured for running as ${ENVIRONMENT}")

@@ -43,8 +43,8 @@ Working directory: ${params.SOURCE_DIRECTORY}
                             echo "--> Found ${COMPOSE_YML};"
 
                             echo "--> Customizing domain names for branch ${BRANCH}"                                                    
-                            sh "sed -i -e \"s/Host:/Host:${BRANCH}./g\" ${params.SOURCE_DIRECTORY}/${COMPOSE_YML}"
-                            sh "sed -i -e \"s/:master/:${BRANCH}/g\" ${params.SOURCE_DIRECTORY}/${COMPOSE_YML}"
+                            sh "sed -i -e \"s/Host:/Host:${BRANCH}./g\" ${params.SOURCE_DIRECTORY}/laradock/${COMPOSE_YML}"
+                            sh "sed -i -e \"s/:master/:${BRANCH}/g\" ${params.SOURCE_DIRECTORY}/laradock/${COMPOSE_YML}"
 
                             echo "--> Deploying"
                             sh "docker stack deploy -c ${params.SOURCE_DIRECTORY}/laradock/${COMPOSE_YML} --prune ${NAME}-${BRANCH}"
